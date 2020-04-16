@@ -3,13 +3,7 @@ var express = require("express");
 var jimp = require("jimp");
 var fs = require("fs");
 var router = express.Router();
-const {
-  loadData,
-  saveData,
-  loadMeme,
-  saveMeme,
-  addImage,
-} = require("../utils/data.js");
+const { loadData, addImage } = require("../utils/data.js");
 
 router.post("/", upload, async (req, res) => {
   //  we will get the image file from middleware: `updload.single("fileToUpload")`
@@ -28,7 +22,7 @@ router.post("/", upload, async (req, res) => {
 
     //Use Jimp, to resize photo. This code only works, after you use multer to write.
     let image = await jimp.read(file.path);
-    image.resize(300, jimp.AUTO, jimp.RESIZE_NEAREST_NEIGHBOR);
+    image.resize(300, 300);
     await image.writeAsync(file.path);
     // save Image information to database.
     addImage(file);

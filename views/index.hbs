@@ -1,24 +1,33 @@
 <nav class="bg-dark text-light d-flex justify-content-end p-3 pr-5">
   <div class="w-25 d-flex justify-content-between">
-    <a href='/'>Upload</a>
-    <a href='/browse'>Images</a>
-    <a href='/browseMemes'>Memes</a>
+    <a class="text-light" href='/'>Upload</a>
+    <a class="text-light" href='/browse'>Images</a>
+    <a class="text-light" href='/browseMemes'>Memes</a>
   </div>
 </nav>
 
 <div class="container pt-4">
 
-  <h1>{{title}}</h1>
-  <p>Welcome to {{title}}</p>
+  <h1>Khoi's Meme Generator</h1>
+  <p>Upload png, jpeg, and jpg files here. Add text to the images to make memes!</p>
 
-  <form action="/upload" method="post" enctype="multipart/form-data">
-    Select image to upload:
-    <input type="file" name="fileUpload" accept="image/jpg, image/gif, image/png" id="fileUpload" />
-    <input type="submit" value="Upload Image" name="submit" />
+  <form class="pl-3 border-left" action="/upload" method="post" enctype="multipart/form-data">
+    <div class='d-flex flex-column py-3'>
+      <span class="font-italic mb-2">
+        Select an image to upload:
+      </span>
+      <input type="file" name="fileUpload" accept="image/jpg, image/gif, image/png" id="fileUpload" />
+    </div>
+    <input class='btn-sm btn-dark' type="submit" value="Upload Image" name="submit" />
   </form>
 
   {{#if error }}
   <strong>{{error}}</strong>
   {{/if}}
+
+  <div class="w-100 text-center fixed-bottom p-3">
+    <span>See the code on Github:</span>
+    <a href="https://github.com/khoi148/meme-generator">Github Repo</a>
+  </div>
 
 </div>

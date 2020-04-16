@@ -28,8 +28,8 @@ function addMeme(file, memePath) {
   }
   file.id = id;
   //1.5 Change file paths to correct Meme paths
-  file.originalname = "/meme-" + file.originalname;
-  file.filename = "/meme-" + file.filename;
+  file.originalname = "meme-" + file.originalname;
+  file.filename = "meme-" + file.filename;
   delete file.fieldname;
   delete file.destination;
   file.path = memePath;
