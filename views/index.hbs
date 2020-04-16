@@ -1,5 +1,9 @@
-<nav>
-  <h1>navbar</h1>
+<nav class="bg-dark text-light d-flex justify-content-end p-3 pr-5">
+  <div class="w-25 d-flex justify-content-between">
+    <a href='#'>Upload</a>
+    <a href='#'>Images</a>
+    <a href='#'>Memes</a>
+  </div>
 </nav>
 
 
@@ -11,3 +15,7 @@
   <input type="file" name="fileUpload" accept="image/jpg, image/gif, image/png" id="fileUpload" />
   <input type="submit" value="Upload Image" name="submit" />
 </form>
+
+{{#if error }}
+<strong>{{error}}</strong>
+{{/if}}

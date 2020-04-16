@@ -1,0 +1,14 @@
+<div class="container">
+  <h1>This is the images page</h1>
+
+  <div class="d-flex bg-primary flex-wrap">
+    {{#each images}}
+    <div>
+      <p>ID; {{ id }}</p>
+      <img height="200" widht="150" src="http://localhost:3001/upload/original/{{filename}}" alt="pic" />
+    </div>
+    {{/each}}
+  </div>
+
+  <a href="/">Back to Home Page</a>
+</div>
