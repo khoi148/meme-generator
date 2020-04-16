@@ -1,14 +1,26 @@
+<nav class="bg-dark text-light d-flex justify-content-end p-3 pr-5">
+  <div class="w-25 d-flex justify-content-between">
+    <a href='/'>Upload</a>
+    <a href='/browse'>Images</a>
+    <a href='#'>Memes</a>
+  </div>
+</nav>
 <div class="container">
   <h1>This is the images page</h1>
 
-  <div class="d-flex bg-primary flex-wrap">
+  {{#if images}}
+  <div class="d-flex flex-wrap">
     {{#each images}}
-    <div>
-      <p>ID; {{ id }}</p>
-      <img height="200" widht="150" src="http://localhost:3001/upload/original/{{filename}}" alt="pic" />
+    <div class="border border-success m-2 ">
+      <div class="bg-dark text-light">
+        <h2 class="m-0">
+          ID: {{ id }}
+        </h2>
+      </div>
+      <img height="200" widht="150" src="/upload/original/{{filename}}" alt="{{filename}}" />
     </div>
     {{/each}}
   </div>
-
+  {{/if}}
   <a href="/">Back to Home Page</a>
 </div>

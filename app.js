@@ -24,7 +24,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/browse", browseRouter);
-app.use("/upload", uploadRouter);
+app.use("/upload", uploadRouter); //note that this route will redirect to /browse immediately
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
@@ -40,10 +40,6 @@ app.use(function (err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render("error");
-});
-
-app.listen(process.env.PORT || 3001, () => {
-  console.log("server is running on port" + process.env.PORT || 3001);
 });
 
 module.exports = app;

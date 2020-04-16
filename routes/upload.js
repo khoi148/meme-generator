@@ -19,7 +19,7 @@ router.post("/", upload, async (req, res) => {
     }
     // save Image information to database.
     addImage(file);
-    return res.redirect("/browse"); //should be /browse
+    return res.redirect("/browse");
   } catch (e) {
     return res.render("index", {
       error: e.message,
