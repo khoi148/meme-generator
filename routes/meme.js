@@ -3,7 +3,7 @@ var express = require("express");
 var jimp = require("jimp");
 var fs = require("fs");
 const path = require("path");
-const uploadPath = path.join(__dirname, "../upload/meme");
+const uploadPath = path.join(__dirname, "../public/upload/meme");
 
 var router = express.Router();
 const { loadData, addMeme, loadMeme } = require("../utils/data.js");
