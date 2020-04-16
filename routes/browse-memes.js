@@ -11,7 +11,7 @@ const {
 router.get("/", (req, res) => {
   //const images = loadData();
   //const images = data.map((e) => e.filename);
-  res.render("memes", { images: "hi" });
+  res.render("memes", { memes: "hi" });
 });
 
 module.exports = router;

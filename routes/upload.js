@@ -30,7 +30,6 @@ router.post("/", upload, async (req, res) => {
     let image = await jimp.read(file.path);
     image.resize(300, jimp.AUTO, jimp.RESIZE_NEAREST_NEIGHBOR);
     await image.writeAsync(file.path);
-
     // save Image information to database.
     addImage(file);
 

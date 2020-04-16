@@ -12,6 +12,7 @@ const {
   loadMeme,
   saveMeme,
   addImage,
+  addMeme,
 } = require("../utils/data.js");
 
 router.get("/", async (req, res, next) => {
@@ -19,18 +20,19 @@ router.get("/", async (req, res, next) => {
   //Get the 'memetext' param, passed in from the form on images.hbs
   try {
     let memeText = req.query.memetext;
-    //Get the picture file, using the id is passed in as a param.
+    //Get the picture file data, using the id passed in as a param.
     let id = parseInt(req.query.id);
     let image = loadData().filter((item) => item.id === id)[0];
-
-    //use Jimp to load that picture
+    //use Jimp to load that picture, from the /original path
     let jimpImage = await jimp.read(image.path);
-    jimpImage.resize(300, jimp.AUTO, jimp.RESIZE_NEAREST_NEIGHBOR);
-    //Write to file system, in the memefolder
-    await jimpImage.writeAsync(uploadPath + "/meme-" + jimpImage.originalname);
+    jimpImage.resize(300, jimp.AUTO, jimp.RESIZE_NEAREST_NEIGHBOR); //resize
+    //Write to file system, in the memefolder, AND update meme database
+    let memePath = uploadPath + "/meme-" + image.originalname;
+    await jimpImage.writeAsync(memePath);
+    addMeme(image, memePath);
+    //Then use Jimp to put the meme text into the picture
 
-    //Then use Jimp to put the string into the picture
-    res.render("memes", { title: image.path });
+    res.redirect("/browseMemes");
   } catch (e) {
     return res.render("index", {
       error: e.message,
