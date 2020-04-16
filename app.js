@@ -7,7 +7,9 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var browseRouter = require("./routes/browse");
+var browseMemeRouter = require("./routes/browse-memes");
 var uploadRouter = require("./routes/upload");
+var memeRouter = require("./routes/meme");
 
 var app = express();
 
@@ -24,7 +26,9 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
 app.use("/browse", browseRouter);
+app.use("/browseMemes", browseMemeRouter);
 app.use("/upload", uploadRouter); //note that this route will redirect to /browse immediately
+app.use("/create-meme", memeRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -2,22 +2,54 @@
   <div class="w-25 d-flex justify-content-between">
     <a href='/'>Upload</a>
     <a href='/browse'>Images</a>
-    <a href='#'>Memes</a>
+    <a href='/browseMemes'>Memes</a>
   </div>
 </nav>
-<div class="container">
+<div class="container pt-4">
   <h1>This is the images page</h1>
 
   {{#if images}}
   <div class="d-flex flex-wrap">
     {{#each images}}
-    <div class="border border-success m-2 ">
+    <div class="border border-success m-2">
       <div class="bg-dark text-light">
         <h2 class="m-0">
           ID: {{ id }}
         </h2>
       </div>
-      <img height="200" widht="150" src="/upload/original/{{filename}}" alt="{{filename}}" />
+      <img class="" height="200" widht="350" src="/upload/original/{{filename}}" alt="{{filename}}" />
+      <button class="d-block" data-toggle="modal" data-target="#a{{id}}">Create Meme</button>
+    </div>
+    <div class="modal fade" id="a{{id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true" style="display: none;">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Add text for image</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body mx-auto">
+            <img src="/upload/original/{{originalname}}" alt="{{originalname}}">
+          </div>
+          <div class="modal-footer mx-auto">
+            <form action="/create-meme" method="GET">
+              <div class="form-group">
+
+                <label>Text to put in center</label>
+                <input type="text" name="memetext" class="form-control">
+                {{!-- input used to pass in extra param. Not to display anything --}}
+                <input type="text" name="id" class="invisible" value="{{id}}">
+              </div>
+              <div class="mx-auto">
+                <button type="submit" class="btn btn-warning">Submit</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
     {{/each}}
   </div>

@@ -1,7 +1,7 @@
 const upload = require("../utils/upload.js");
 var express = require("express");
 var jimp = require("jimp");
-
+var fs = require("fs");
 var router = express.Router();
 const {
   loadData,
@@ -26,16 +26,17 @@ router.post("/", upload, async (req, res) => {
       throw new Error("This file has already been uploaded. Choose another.");
     }
 
-    //Use Jimp
-    // let image = await jimp(file.path);
-    // image.resize(300, Jimp.AUTO, Jimp.RESIZE_NEAREST_NEIGHBOR);
-    // image.write(file.path);
+    //Use Jimp, to resize photo. This code only works, after you use multer to write.
+    let image = await jimp.read(file.path);
+    image.resize(300, jimp.AUTO, jimp.RESIZE_NEAREST_NEIGHBOR);
+    await image.writeAsync(file.path);
 
     // save Image information to database.
     addImage(file);
 
     return res.redirect("/browse");
   } catch (e) {
+    //fs.unlinkSync(file.path);
     return res.render("index", {
       error: e.message,
     });
