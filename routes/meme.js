@@ -25,8 +25,13 @@ router.get("/", async (req, res, next) => {
         let message = memeText;
         let x = 40;
         let y = 270;
+        let maxWidth = 200;
         jimpImage.print(font, x, y, message);
         return jimpImage;
+      })
+      .then((img) => {
+        img.invert();
+        return img;
       })
       .then(async (imageReturn) => {
         let memePath = uploadPath + "/meme-" + image.originalname;
